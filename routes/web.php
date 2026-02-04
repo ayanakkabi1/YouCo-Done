@@ -20,4 +20,6 @@ Route::middleware('auth')->group(function () {
 route::get('/restaurants',[RestaurantController::class,'index'])->name('restaurant.index');
 route::get('/restaurants/create',[RestaurantController::class,'create'])->name('restaurant.create');
 route::post('/restaurant/store',[RestaurantController::class,'store'])->name('restaurant.store');
+route::get('restaurant/{id}/edit',[RestaurantController::class,'edit'])->name('restaurant.edit');
+route::PUT('restaurant/{id}/update',[RestaurantController::class,'update'])->name('restaurant.update');
 require __DIR__.'/auth.php';
