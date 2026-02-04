@@ -50,5 +50,18 @@ class RestaurantController extends Controller
         $restaurant->update($data);
         return redirect()->route('restaurant.index')->with('success', 'Restaurant mis à jour !');
     }
+    public function destroy($id)
+    {
+        $restaurant = Restaurant::findOrFail($id);
+
+    if ($restaurant->user_id !== auth()->user->id) {
+        return back()->with('error', 'Ceci ne vous appartient pas !');
+    }
+    $restaurant->delete();
+
+    return redirect()->route('restaurant.index')->with('success', 'Restaurant supprimé avec succès.');
+    }
+    
+    
     
 }
