@@ -11,12 +11,29 @@ class RestaurantSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        $user =User::create([
-            'name'=>'chef pink',
-            'email'=>'chefpink@gmail.com',
-            'password'=>Hash::make('admin123'),
-            'role'=>'restaurateur',
+    {   
+        $user = User::Create(
+            ['email' => 'chefpink@gmail.com',
+                'name' => 'chef pink',
+                'password' => Hash::make('admin123'),
+                'role' => 'restaurateur',
+            ]
+        );
+        $user->restaurants()->createMany([
+            [
+                'name'=>'Pasta safi',
+                'ville'=>'Casablanca',
+                'capacity'=>'100',
+                'cuisine' =>'italienne',
+            ],
+            [
+                'name' => 'mer eat',
+                'ville'=>'Safi',
+                'capacity'=>'30',
+                'cuisine' =>'asiatique',
+            ]
         ]);
+
     }
+    
 }
