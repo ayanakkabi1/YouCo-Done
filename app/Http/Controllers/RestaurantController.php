@@ -61,7 +61,9 @@ class RestaurantController extends Controller
 
     return redirect()->route('restaurant.index')->with('success', 'Restaurant supprimé avec succès.');
     }
-    
-    
+    public function details($id){
+        $restaurant=Restaurant::findorfail($id);
+        return view('restaurant.details',compact('restaurant'));
+    }
     
 }
