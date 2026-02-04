@@ -29,4 +29,26 @@ class RestaurantController extends Controller
         Restaurant::create($data);
         return back()->with('success','Restaurant créé avec succès');
     }
+    public function edit($id){
+        $restaurant=Restaurant::findOrFail($id);
+        if($restaurant->user_id !== auth()->user->id()){
+            return redirect()->route('restaurant.index')->with('error','Accès refusé');
+        }
+        return view('restaurant.edit',compact('restaurant'));
+    }
+    public function update(Request $request,$id){
+        $restaurant=Restaurant::findorFail($id);
+        if($restaurant->user_id !== auth()->user->id()){
+            return redirect()->route('restaurant.index')->with('error','Accès refusé');
+        }
+         $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'ville' => 'required|string|max:100',
+            'capacity' => 'required|integer|min:1',
+            'cuisine' => 'required|string'
+        ]);
+        $restaurant->update($data);
+        return redirect()->route('restaurant.index')->with('success', 'Restaurant mis à jour !');
+    }
+    
 }
