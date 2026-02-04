@@ -19,6 +19,14 @@ class RestaurantController extends Controller
         if(Auth::user()->role != 'restaurateur'){
             return back()->with('error','Accès refusé');
         }
-        Restaurant::create($request->validated());
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'ville' => 'required|string|max:100',
+            'capacity' => 'required|integer|min:1',
+            'cuisine' => 'required|string'
+        ]);
+        $data['user_id'] = Auth::id();
+        Restaurant::create($data);
+        return back()->with('success','Restaurant créé avec succès');
     }
 }
