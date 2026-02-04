@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the restaurants for the user.
+     */
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }
