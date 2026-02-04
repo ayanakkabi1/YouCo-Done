@@ -18,5 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 route::get('/restaurants',[RestaurantController::class,'index'])->name('restaurant.index');
-
+route::get('/restaurants/create',[RestaurantController::class,'create'])->name('restaurant.create');
+route::post('/restaurant/store',[RestaurantController::class,'store'])->name('restaurant.store');
 require __DIR__.'/auth.php';
