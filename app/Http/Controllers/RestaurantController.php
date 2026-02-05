@@ -77,7 +77,11 @@ class RestaurantController extends Controller
         ->paginate(request('per_page,10'));
     }
     public function countrestaurants(){
-        $nb_rstaurants=Restaurant::count();
+        $nb_restaurants=Restaurant::count();
         return view('admin.dashboard',compact('nb_restaurants'));
+    }
+     public function countusers(){
+        $nb_users=User::count();
+        return view('admin.dashboard',compact('nb_users  '));
     }
 }
