@@ -76,4 +76,8 @@ class RestaurantController extends Controller
         })
         ->paginate(request('per_page,10'));
     }
+    public function countrestaurants(){
+        $nb_rstaurants=Restaurant::count();
+        return view('admin.dashboard',compact('nb_restaurants'));
+    }
 }
