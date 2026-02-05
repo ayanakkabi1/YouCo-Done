@@ -65,5 +65,15 @@ class RestaurantController extends Controller
         $restaurant=Restaurant::findorfail($id);
         return view('restaurant.details',compact('restaurant'));
     }
-    
+    public function search(Request $request){
+        $search=$request->input('search');
+        $restaurant=Restaurant::when(request('ville'),function($q){
+            $q->where('ville','like','%'.request('ville').'%');
+        
+            })
+        ->when(request('cuisine'),function($q){
+            $q->where('cuisine','like','%'.request('cuisine').'%');
+        })
+        ->paginate(request('per_page,10'));
+    }
 }
