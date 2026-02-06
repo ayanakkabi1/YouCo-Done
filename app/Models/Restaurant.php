@@ -13,4 +13,9 @@ class Restaurant extends Model{
          'capacity',
          'user_id',
          ];
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(User::class,'favorites');
+    }
+    
 }
