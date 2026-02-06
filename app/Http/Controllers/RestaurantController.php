@@ -84,4 +84,5 @@ class RestaurantController extends Controller
         $nb_users=User::count();
         return view('admin.dashboard',compact('nb_users  '));
     }
+    
 }
